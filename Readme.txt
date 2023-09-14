@@ -1,0 +1,1 @@
+Esto es una simulación de venta de autos
