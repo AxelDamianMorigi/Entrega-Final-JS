@@ -45,7 +45,7 @@ formularioCompra.addEventListener('submit', (event) => {
   const trabajo = document.getElementById('trabajo').value;
   const auto = document.getElementById('auto').value;
   const financiacion = document.getElementById('financiacion').value;
-  const cuotas = document.getElementById('cuotas').value;
+  const cuotas = parseInt(document.getElementById('cuotas').value);
 
   const tieneTrabajo = trabajo.toLowerCase() === 'sí' || trabajo.toLowerCase() === 'si';
 
@@ -57,10 +57,10 @@ formularioCompra.addEventListener('submit', (event) => {
       : 'Entendido, pagará el auto al contado.';
 
     if (tieneFinanciacion) {
-      let opcion = parseInt prompt('Ingrese el número de la opción deseada (1, 2 o 3):');
+      let opcion = parseInt(prompt('Ingrese el número de la opción deseada (1, 2 o 3):') || '0');
 
       while (opcion < 1 || opcion > 3) {
-        opcion = parseInt prompt('Ingrese el número de la opción deseada (1, 2 o 3):');
+        opcion = parseInt(prompt('Ingrese el número de la opción deseada (1, 2 o 3):') || '0');
       }
 
       let cuotas;
