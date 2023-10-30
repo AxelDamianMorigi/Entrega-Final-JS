@@ -55,26 +55,17 @@ document.addEventListener('DOMContentLoaded', () => {
         : 'Entendido, pagará el auto al contado.';
 
       if (tieneFinanciacion) {
-        let opcion = parseInt(prompt('Ingrese el número de la opción deseada (1, 2 o 3):') || '0');
-
-        while (opcion < 1 || opcion > 3) {
-          opcion = parseInt(prompt('Ingrese el número de la opción deseada (1, 2 o 3):') || '0');
-        }
-
-        let cuotas;
+        
         let interes;
 
-        switch (opcion) {
-          case 1:
-            cuotas = 24;
+       switch (cuotas) {
+          case 24:
             interes = 0.05;
             break;
-          case 2:
-            cuotas = 48;
+          case 48:
             interes = 0.08;
             break;
-          case 3:
-            cuotas = 70;
+          case 70:
             interes = 0.10;
             break;
           default:
