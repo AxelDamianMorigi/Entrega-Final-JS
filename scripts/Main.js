@@ -1,102 +1,50 @@
-const autosInfo = {
-  audi: {
-    modelo: 'Audi',
-    precioBase: 30000,
-  },
-  bmw: {
-    modelo: 'BMW',
-    precioBase: 35000,
-  },
-  'mercedes-benz': {
-    modelo: 'Mercedes-Benz',
-    precioBase: 40000,
-  },
-};
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Concesionaria de Autos</title>
+</head>
+<body>
+    <h1>Bienvenido a la Concesionaria de Autos</h1>
+    
+    <form id="autoForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required><br><br>
 
-class Auto {
-  constructor(modelo, precioBase) {
-    this.modelo = modelo;
-    this.precioBase = precioBase;
-    this.descuento = 0;
-  }
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" required><br><br>
 
-  precioFinal(cuotas, interes, descuento) {
-    let precioFinal = (this.precioBase + this.precioBase * interes) - this.precioBase * descuento;
-    return precioFinal * cuotas;
-  }
-}
+        <label for="trabajo">¿Tiene trabajo? (Sí o No):</label>
+        <input type="text" id="trabajo" required><br><br>
 
-const autosComprados = [];
-const modelosDisponibles = ['audi', 'bmw', 'mercedes-benz'];
+        <label for="auto">¿Qué automóvil desea comprar? (Audi, BMW, Mercedes-Benz):</label>
+        <select id="auto" required>
+            <option value="audi">Audi</option>
+            <option value="bmw">BMW</option>
+            <option value="mercedes-benz">Mercedes-Benz</option>
+        </select><br><br>
 
-document.addEventListener('DOMContentLoaded', () => {
-  const formularioCompra = document.getElementById('autoForm');
-  const resultadoDiv = document.getElementById('resultado');
-  const guardarLocalButton = document.getElementById('guardarLocal');
-  const guardarSessionButton = document.getElementById('guardarSession');
+        <label for="financiacion">¿Necesita financiación? (Sí o No):</label>
+        <input type="text" id="financiacion" required><br><br>
 
-  formularioCompra.addEventListener('submit', (event) => {
-    event.preventDefault();
+        <label for="cuotas">Seleccione una opción de financiación:</label>
+        <select id="cuotas">
+            <option value="24">24 cuotas con 5% de interés</option>
+            <option value="48">48 cuotas con 8% de interés</option>
+            <option value="70">70 cuotas con 10% de interés</option>
+        </select><br><br>
 
-    const nombre = document.getElementById('nombre').value;
-    const apellido = document.getElementById('apellido').value;
-    const trabajo = document.getElementById('trabajo').value;
-    const auto = document.getElementById('auto').value;
-    const financiacion = document.getElementById('financiacion').value;
-    const cuotas = parseInt(document.getElementById('cuotas').value);
+        <button type="submit">Calcular</button>
+    </form>
+    
+    <h2>Resultados</h2>
+    <div id="resultado"></div>
 
-    const tieneTrabajo = trabajo.toLowerCase() === 'sí' || trabajo.toLowerCase() === 'si';
+    <button id="guardarLocal">Guardar en localStorage</button>
+    <button id="guardarSession">Guardar en sessionStorage</button>
 
-    if (tieneTrabajo && modelosDisponibles.includes(auto.toLowerCase())) {
-      const tieneFinanciacion = financiacion.toLowerCase() === 'sí' || financiacion.toLowerCase() === 'si';
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="./scripts/Main.js"></script>
 
-      resultadoDiv.innerHTML = tieneFinanciacion
-        ? `Seleccione una opción de financiación:<br>1. 24 cuotas con 5% de interés.<br>2. 48 cuotas con 8% de interés.<br>3. 70 cuotas con 10% de interés.`
-        : 'Entendido, pagará el auto al contado.';
-
-      if (tieneFinanciacion) {
-        
-        let interes;
-
-       switch (cuotas) {
-          case 24:
-            interes = 0.05;
-            break;
-          case 48:
-            interes = 0.08;
-            break;
-          case 70:
-            interes = 0.10;
-            break;
-          default:
-            resultadoDiv.innerHTML = 'Opción no válida.';
-            return;
-        }
-
-        resultadoDiv.innerHTML = `Ha elegido financiación a ${cuotas} cuotas con un interés del ${interes * 100}%.`;
-
-        const descuento = cuotas >= 12 ? 0.1 : 0;
-
-        const autoSeleccionado = new Auto(auto, autosInfo[auto.toLowerCase()]?.precioBase ?? 0);
-        autoSeleccionado.descuento = descuento;
-
-        autosComprados.push(autoSeleccionado);
-        resultadoDiv.innerHTML += `<br>Precio del ${auto} con descuento e interés: $${autoSeleccionado.precioFinal(cuotas, interes, descuento).toFixed(2)}`;
-      }
-    } else {
-      resultadoDiv.innerHTML = tieneTrabajo
-        ? `Lo siento, ${nombre} ${apellido}, debes tener trabajo para comprar un auto.`
-        : 'Lo siento, debes tener trabajo para comprar un auto.';
-    }
-  });
-
-  guardarLocalButton.addEventListener('click', () => {
-    localStorage.setItem('autosComprados', JSON.stringify(autosComprados));
-    alert('Autos comprados guardados en localStorage.');
-  });
-
-  guardarSessionButton.addEventListener('click', () => {
-    sessionStorage.setItem('autosComprados', JSON.stringify(autosComprados));
-    alert('Autos comprados guardados en sessionStorage.');
-  });
-});
+</body>
+</html>
