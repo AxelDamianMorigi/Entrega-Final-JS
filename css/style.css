@@ -52,7 +52,7 @@ body {
     border-radius: 5px;
   }
   
-  /* Media query for tablets */
+
   @media (min-width: 768px) {
     input[type="text"],
     select {
@@ -75,7 +75,7 @@ body {
     }
   }
   
-  /* Media query for desktop */
+ 
   @media (min-width: 992px) {
     .container {
       width: 960px;
