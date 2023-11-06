@@ -1,0 +1,15 @@
+{
+    "audi": {
+      "modelo": "Audi",
+      "precioBase": 30000
+    },
+    "bmw": {
+      "modelo": "BMW",
+      "precioBase": 35000
+    },
+    "mercedes-benz": {
+      "modelo": "Mercedes-Benz",
+      "precioBase": 40000
+    }
+  }
+  

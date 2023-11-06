@@ -1,50 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Concesionaria de Autos</title>
+  <title>Compra de Autos</title>
+  <link rel="stylesheet" type="text/css" href="./css/Style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="./scripts/Main.js"></script>
 </head>
 <body>
-    <h1>Bienvenido a la Concesionaria de Autos</h1>
-    
+
+  <div class="container">
+    <h1>Formulario de Compra de Auto</h1>
     <form id="autoForm">
+      <div class="form-group">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" required><br><br>
-
+        <input type="text" id="nombre" required>
+      </div>
+      <div class="form-group">
         <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" required><br><br>
-
+        <input type="text" id="apellido" required>
+      </div>
+      <div class="form-group">
         <label for="trabajo">¿Tiene trabajo? (Sí o No):</label>
-        <input type="text" id="trabajo" required><br><br>
-
-        <label for="auto">¿Qué automóvil desea comprar? (Audi, BMW, Mercedes-Benz):</label>
-        <select id="auto" required>
-            <option value="audi">Audi</option>
-            <option value="bmw">BMW</option>
-            <option value="mercedes-benz">Mercedes-Benz</option>
-        </select><br><br>
-
-        <label for="financiacion">¿Necesita financiación? (Sí o No):</label>
-        <input type="text" id="financiacion" required><br><br>
-
-        <label for="cuotas">Seleccione una opción de financiación:</label>
+        <input type="text" id="trabajo" required>
+      </div>
+      <div class="form-group">
+        <label for="auto">Seleccione un auto:</label>
+        <select id="auto">
+          <option value="audi">Audi</option>
+          <option value="bmw">BMW</option>
+          <option value="mercedes-benz">Mercedes-Benz</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="financiacion">¿Desea financiación? (Sí o No):</label>
+        <input type="text" id="financiacion" required>
+      </div>
+      <div class="form-group">
+        <label for="cuotas">Cantidad de cuotas:</label>
         <select id="cuotas">
-            <option value="24">24 cuotas con 5% de interés</option>
-            <option value="48">48 cuotas con 8% de interés</option>
-            <option value="70">70 cuotas con 10% de interés</option>
-        </select><br><br>
-
-        <button type="submit">Calcular</button>
+          <option value="24">24 Cuotas (5% de interés)</option>
+          <option value="48">48 Cuotas (8% de interés)</option>
+          <option value="72">72 Cuotas (10% de interés)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn">Comprar Auto</button>
     </form>
-    
-    <h2>Resultados</h2>
-    <div id="resultado"></div>
 
-    <button id="guardarLocal">Guardar en localStorage</button>
-    <button id="guardarSession">Guardar en sessionStorage</button>
+    <div id="resultado" class="resultados"></div>
+    <button id="guardarLocal" class="btn">Guardar en LocalStorage</button>
+    <button id="mostrarLocal" class="btn">Mostrar desde LocalStorage</button>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <script src="./scripts/Main.js"></script>
+    <div id="autosCompradosInfo">
+      <h2>Autos Comprados</h2>
+      <ul id="autosCompradosList"></ul>
+    </div>
+  </div>
 
 </body>
 </html>
